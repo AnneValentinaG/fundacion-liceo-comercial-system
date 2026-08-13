@@ -1,0 +1,19 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Variables sensibles
+.env
+
+# Django
+db.sqlite3
+
+# VS Code
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini
