@@ -30,3 +30,7 @@ class PerfilUsuario(models.Model):
 
     def __str__(self):
         return f"{self.usuario.get_full_name()} - {self.identificacion}"
+
+
+
+    

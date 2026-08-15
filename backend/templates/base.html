@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Plataforma FLC{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <!-- LOGO Y NOMBRE DE LA FUNDACIÓN -->
+        <div class="header-brand">
+
+            <img
+                src="{% static 'img/logo-fundacion.png' %}"
+                alt="Logo Fundación Liceo Comercial"
+                class="header-logo"
+            >
+
+            <div class="header-brand-text">
+                <strong>Fundación Liceo Comercial</strong>
+                <span>Ciudad De El Bordo</span>
+            </div>
+
+        </div>
+
+
+        <!-- USUARIO Y CERRAR SESIÓN -->
+        {% if user.is_authenticated %}
+
+            <div class="header-user">
+
+                <span>
+                    {{ user.get_full_name|default:user.username }}
+                </span>
+
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Cerrar sesión
+                    </button>
+                </form>
+
+            </div>
+
+        {% endif %}
+
+    </header>
+
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

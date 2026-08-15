@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Plataforma FLC{% endblock %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="dashboard-title">
+
+        <p class="dashboard-label">
+            Panel institucional
+        </p>
+
+        <h1>
+            Bienvenido, {{ user.first_name|default:user.username }}
+        </h1>
+
+        <p class="dashboard-description">
+            Desde este espacio podrás acceder a las diferentes
+            herramientas administrativas de la Fundación Liceo Comercial Ciudad De El Bordo.
+        </p>
+
+    </div>
+
+
+    <div class="module-grid">
+
+        <!-- ADMINISTRACIÓN DE USUARIOS -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Administración de usuarios
+            </h2>
+
+            <p>
+                Gestión de usuarios, roles, permisos y acceso
+                a los diferentes módulos de la plataforma.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+
+        <!-- GESTIÓN DOCUMENTAL -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Gestión documental
+            </h2>
+
+            <p>
+                Registro, organización, consulta y seguimiento
+                de documentos institucionales.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+
+        <!-- CONTRATOS -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Contratos
+            </h2>
+
+            <p>
+                Registro, consulta y seguimiento de contratos
+                y documentación relacionada.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+
+        <!-- PUBLICACIONES EN REDES SOCIALES -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Publicaciones en redes sociales
+            </h2>
+
+            <p>
+                Registro y organización de las publicaciones
+                realizadas en las redes sociales institucionales.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+
+        <!-- MÉTRICAS -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Métricas
+            </h2>
+
+            <p>
+                Seguimiento de resultados, alcance e interacción
+                de las publicaciones institucionales.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+
+        <!-- SEGUIMIENTO DE COMUNICACIONES -->
+        <a href="#" class="module-button">
+
+            <h2>
+                Seguimiento de comunicaciones
+            </h2>
+
+            <p>
+                Registro y seguimiento de los mensajes enviados
+                y recibidos por la Fundación, permitiendo consultar
+                su estado, fecha, remitente y destinatario.
+            </p>
+
+            <span class="module-link">
+                Acceder al módulo →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

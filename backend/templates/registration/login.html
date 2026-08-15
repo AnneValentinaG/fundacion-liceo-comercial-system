@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acceso | Fundación Liceo Comercial</title>
+
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <!-- LOGO DE LA FUNDACIÓN -->
+        <div class="login-logo-container">
+            <img
+                src="{% static 'img/logo-fundacion.png' %}"
+                alt="Logo Fundación Liceo Comercial Ciudad De El Bordo"
+                class="login-logo"
+            >
+        </div>
+
+
+        <!-- TARJETA DE INICIO DE SESIÓN -->
+        <section class="login-card">
+
+            <div class="login-header">
+
+                <h1>
+                    Fundación Liceo Comercial
+                    Ciudad De El Bordo
+                </h1>
+
+                <p class="login-slogan">
+                    Construyendo Futuro a Través De La Educación
+                </p>
+
+            </div>
+
+
+            {% if form.errors %}
+                <div class="login-error">
+                    Usuario o contraseña incorrectos.
+                </div>
+            {% endif %}
+
+
+            <form method="post" class="login-form">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+                        Usuario
+                    </label>
+
+                    {{ form.username }}
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.password.id_for_label }}">
+                        Contraseña
+                    </label>
+
+                    {{ form.password }}
+
+                </div>
+
+
+                <button type="submit" class="login-button">
+                    Ingresar
+                </button>
+
+
+                <div class="password-recovery">
+                    <a href="#">
+                        Recuperar contraseña
+                    </a>
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
