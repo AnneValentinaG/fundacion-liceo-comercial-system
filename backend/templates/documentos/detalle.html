@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}
+Documento {{ documento.numero_radicado }}
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión documental</p>
+
+            <h1>
+                {{ documento.numero_radicado }}
+            </h1>
+
+            <p>
+                {{ documento.asunto }}
+            </p>
+        </div>
+
+        <a
+            href="{% url 'documentos:lista' %}"
+            class="btn-secondary"
+        >
+            Volver
+        </a>
+
+    </div>
+
+    <div class="detail-card">
+
+        <p>
+            <strong>Fecha del documento:</strong>
+            {{ documento.fecha_documento }}
+        </p>
+
+        <p>
+            <strong>Fecha de recepción:</strong>
+            {{ documento.fecha_recepcion|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Remitente:</strong>
+            {{ documento.remitente }}
+        </p>
+
+        <p>
+            <strong>Destinatario:</strong>
+            {{ documento.destinatario|default:"No registrado" }}
+        </p>
+
+        <p>
+            <strong>Dependencia:</strong>
+            {{ documento.dependencia|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Estado:</strong>
+            {{ documento.get_estado_display }}
+        </p>
+
+        <p>
+            <strong>Responsable:</strong>
+
+            {% if documento.responsable %}
+                {{ documento.responsable.get_full_name|default:documento.responsable.username }}
+            {% else %}
+                Sin asignar
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Observaciones:</strong>
+            {{ documento.observaciones|default:"Sin observaciones" }}
+        </p>
+
+        {% if documento.archivo %}
+
+            <p>
+                <strong>Archivo:</strong>
+
+                <a
+                    href="{{ documento.archivo.url }}"
+                    target="_blank"
+                >
+                    Ver archivo
+                </a>
+            </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

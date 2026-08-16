@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registrar documento | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+        <div>
+            <p>Gestión documental</p>
+            <h1>Registrar documento</h1>
+            <p>
+                Ingresa la información principal del documento
+                recibido o generado por la Fundación Liceo Comercial Ciudad De El Bordo.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'documentos:lista' %}"
+            class="btn-secondary"
+        >
+            Ver documentos
+        </a>
+    </div>
+
+    <div class="form-card">
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Registrar documento
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

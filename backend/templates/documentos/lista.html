@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+Gestión documental | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión documental</p>
+
+            <h1>Documentos registrados</h1>
+
+            <p>
+                Consulta los documentos almacenados
+                dentro de la plataforma.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'documentos:crear' %}"
+            class="btn-primary"
+        >
+            Registrar documento
+        </a>
+
+    </div>
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Radicado</th>
+                    <th>Fecha</th>
+                    <th>Remitente</th>
+                    <th>Asunto</th>
+                    <th>Estado</th>
+                    <th>Responsable</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for documento in documentos %}
+
+                    <tr>
+
+                        <td>
+                            {{ documento.numero_radicado }}
+                        </td>
+
+                        <td>
+                            {{ documento.fecha_documento }}
+                        </td>
+
+                        <td>
+                            {{ documento.remitente }}
+                        </td>
+
+                        <td>
+                            {{ documento.asunto }}
+                        </td>
+
+                        <td>
+                            {{ documento.get_estado_display }}
+                        </td>
+
+                        <td>
+                            {% if documento.responsable %}
+                                {{ documento.responsable.get_full_name|default:documento.responsable.username }}
+                            {% else %}
+                                Sin asignar
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a
+                                href="{% url 'documentos:detalle' documento.pk %}"
+                            >
+                                Ver
+                            </a>
+                        </td>
+
+                    </tr>
+
+                {% empty %}
+
+                    <tr>
+                        <td colspan="7">
+                            No hay documentos registrados.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -23,8 +23,23 @@ class Documento(models.Model):
 
     fecha_documento = models.DateField()
 
+    fecha_recepcion = models.DateField(
+        null=True,
+        blank=True,
+    )
+
     remitente = models.CharField(
         max_length=150,
+    )
+
+    destinatario = models.CharField(
+        max_length=150,
+        blank=True,
+    )
+
+    dependencia = models.CharField(
+        max_length=150,
+        blank=True,
     )
 
     asunto = models.CharField(
@@ -49,6 +64,14 @@ class Documento(models.Model):
         null=True,
         blank=True,
         related_name="documentos_asignados",
+    )
+
+    creado_por = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="documentos_creados",
     )
 
     archivo = models.FileField(
