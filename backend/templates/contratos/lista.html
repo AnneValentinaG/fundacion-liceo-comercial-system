@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contratos | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión de contratos</p>
+
+            <h1>Contratos registrados</h1>
+
+            <p>
+                Consulta y realiza seguimiento a los contratos
+                almacenados en la plataforma.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'contratos:crear' %}"
+            class="btn-primary"
+        >
+            Registrar contrato
+        </a>
+
+    </div>
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Contratista</th>
+                    <th>Inicio</th>
+                    <th>Finalización</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for contrato in contratos %}
+
+                <tr>
+
+                    <td>{{ contrato.numero_contrato }}</td>
+
+                    <td>{{ contrato.contratista }}</td>
+
+                    <td>{{ contrato.fecha_inicio }}</td>
+
+                    <td>{{ contrato.fecha_fin }}</td>
+
+                    <td>
+                        ${{ contrato.valor }}
+                    </td>
+
+                    <td>
+                        {{ contrato.get_estado_display }}
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'contratos:detalle' contrato.pk %}"
+                        >
+                            Ver
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="7">
+                        No hay contratos registrados.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

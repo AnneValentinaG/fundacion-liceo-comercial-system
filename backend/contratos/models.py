@@ -13,16 +13,35 @@ class Contrato(models.Model):
         FINALIZADO = "FINALIZADO", "Finalizado"
         LIQUIDADO = "LIQUIDADO", "Liquidado"
 
+    class TipoContrato(models.TextChoices):
+        PRESTACION_SERVICIOS = "PRESTACION_SERVICIOS", "Prestación de servicios"
+        SUMINISTRO = "SUMINISTRO", "Suministro"
+        COMPRAVENTA = "COMPRAVENTA", "Compraventa"
+        ARRENDAMIENTO = "ARRENDAMIENTO", "Arrendamiento"
+        CONVENIO = "CONVENIO", "Convenio"
+        OTRO = "OTRO", "Otro"
+
     numero_contrato = models.CharField(
         max_length=50,
         unique=True,
     )
 
     contratista = models.CharField(
-        max_length=200, 
+        max_length=200,
     )
 
     objeto = models.TextField()
+
+    tipo_contrato = models.CharField(
+        max_length=30,
+        choices=TipoContrato.choices,
+        default=TipoContrato.OTRO,
+    )
+
+    fecha_firma = models.DateField(
+        null=True,
+        blank=True,
+    )
 
     fecha_inicio = models.DateField()
 
@@ -48,12 +67,22 @@ class Contrato(models.Model):
         related_name="contratos_asignados",
     )
 
+    archivo_principal = models.FileField(
+        upload_to="contratos/principales/%Y/%m/",
+        null=True,
+        blank=True,
+    )
+
     observaciones = models.TextField(
         blank=True,
     )
 
     fecha_registro = models.DateTimeField(
         auto_now_add=True,
+    )
+
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
     )
 
     def __str__(self):
@@ -73,7 +102,7 @@ class DocumentoContrato(models.Model):
     )
 
     archivo = models.FileField(
-        upload_to="contratos/%Y/%m/",
+        upload_to="contratos/documentos/%Y/%m/",
     )
 
     fecha_carga = models.DateTimeField(

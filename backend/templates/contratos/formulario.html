@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registrar contrato | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión de contratos</p>
+
+            <h1>Registrar contrato</h1>
+
+            <p>
+                Ingresa la información principal del contrato
+                para almacenarla dentro de la plataforma.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'contratos:lista' %}"
+            class="btn-secondary"
+        >
+            Ver contratos
+        </a>
+
+    </div>
+
+    <div class="form-card">
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Registrar contrato
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

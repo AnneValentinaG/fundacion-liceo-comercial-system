@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}
+Contrato {{ contrato.numero_contrato }}
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión de contratos</p>
+
+            <h1>
+                {{ contrato.numero_contrato }}
+            </h1>
+
+            <p>
+                {{ contrato.contratista }}
+            </p>
+        </div>
+
+        <a
+            href="{% url 'contratos:lista' %}"
+            class="btn-secondary"
+        >
+            Volver
+        </a>
+
+    </div>
+
+    <div class="detail-card">
+
+        <p>
+            <strong>Tipo de contrato:</strong>
+            {{ contrato.get_tipo_contrato_display }}
+        </p>
+
+        <p>
+            <strong>Objeto:</strong>
+            {{ contrato.objeto }}
+        </p>
+
+        <p>
+            <strong>Fecha de firma:</strong>
+            {{ contrato.fecha_firma|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Fecha de inicio:</strong>
+            {{ contrato.fecha_inicio }}
+        </p>
+
+        <p>
+            <strong>Fecha de finalización:</strong>
+            {{ contrato.fecha_fin }}
+        </p>
+
+        <p>
+            <strong>Valor:</strong>
+            ${{ contrato.valor }}
+        </p>
+
+        <p>
+            <strong>Estado:</strong>
+            {{ contrato.get_estado_display }}
+        </p>
+
+        <p>
+            <strong>Responsable:</strong>
+
+            {% if contrato.responsable %}
+                {{ contrato.responsable.get_full_name|default:contrato.responsable.username }}
+            {% else %}
+                Sin asignar
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Observaciones:</strong>
+            {{ contrato.observaciones|default:"Sin observaciones" }}
+        </p>
+
+        {% if contrato.archivo_principal %}
+
+        <p>
+            <strong>Archivo principal:</strong>
+
+            <a
+                href="{{ contrato.archivo_principal.url }}"
+                target="_blank"
+            >
+                Ver contrato
+            </a>
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
