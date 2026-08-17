@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "contratos",
     "publicaciones",
     "metricas",
+    "asistente_ia",
 ]
 
 MIDDLEWARE = [

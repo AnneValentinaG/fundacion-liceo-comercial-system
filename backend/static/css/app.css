@@ -716,3 +716,63 @@ button {
         overflow-x: auto;
     }
 }
+
+/* =========================================
+   ASISTENTE IA
+========================================= */
+
+.ai-layout {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.ai-result-card {
+    min-height: 420px;
+    padding: 32px;
+
+    background: #ffffff;
+
+    border: 1px solid #e8e8e8;
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.ai-result-card h2,
+.form-card h2 {
+    margin-top: 0;
+    color: #8AA63B;
+}
+
+.ai-response {
+    color: #444444;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.empty-message {
+    color: #888888;
+    line-height: 1.6;
+}
+
+.ai-error {
+    padding: 14px;
+
+    background: #fff2ed;
+
+    border: 1px solid #f3c5b1;
+    border-radius: 10px;
+
+    color: #a54118;
+}
+
+@media (max-width: 850px) {
+
+    .ai-layout {
+        grid-template-columns: 1fr;
+    }
+
+}

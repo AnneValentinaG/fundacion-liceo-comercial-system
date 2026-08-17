@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+Asistente IA | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Comunicación institucional</p>
+
+            <h1>Asistente de contenido con IA</h1>
+
+            <p>
+                Describe lo que deseas comunicar y recibe
+                una propuesta inicial para tus redes sociales.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="ai-layout">
+
+        <div class="form-card">
+
+            <h2>Nueva solicitud</h2>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button
+                    type="submit"
+                    class="btn-primary"
+                >
+                    Generar propuesta
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="ai-result-card">
+
+            <h2>Propuesta generada</h2>
+
+            {% if resultado %}
+
+                <div class="ai-response">
+                    {{ resultado|linebreaks }}
+                </div>
+
+            {% elif error %}
+
+                <p class="ai-error">
+                    {{ error }}
+                </p>
+
+            {% else %}
+
+                <p class="empty-message">
+                    La propuesta aparecerá aquí después
+                    de enviar una solicitud.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
