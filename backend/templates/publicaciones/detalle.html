@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ publicacion.tema }} | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>
+                {{ publicacion.get_red_social_display }}
+            </p>
+
+            <h1>
+                {{ publicacion.tema }}
+            </h1>
+
+            <p>
+                {{ publicacion.get_estado_display }}
+            </p>
+        </div>
+
+        <a
+            href="{% url 'publicaciones:lista' %}"
+            class="btn-secondary"
+        >
+            Volver
+        </a>
+
+    </div>
+
+    <div class="detail-card">
+
+        <p>
+            <strong>Red social:</strong>
+            {{ publicacion.get_red_social_display }}
+        </p>
+
+        <p>
+            <strong>Fecha:</strong>
+            {{ publicacion.fecha_publicacion|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Tipo de contenido:</strong>
+            {{ publicacion.tipo_contenido|default:"No definido" }}
+        </p>
+
+        <p>
+            <strong>Estado:</strong>
+            {{ publicacion.get_estado_display }}
+        </p>
+
+        <p>
+            <strong>Contenido:</strong>
+            {{ publicacion.contenido }}
+        </p>
+
+        {% if publicacion.enlace_publicacion %}
+
+        <p>
+            <strong>Enlace:</strong>
+
+            <a
+                href="{{ publicacion.enlace_publicacion }}"
+                target="_blank"
+            >
+                Abrir publicación
+            </a>
+        </p>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

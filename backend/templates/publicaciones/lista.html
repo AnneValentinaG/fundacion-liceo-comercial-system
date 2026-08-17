@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}
+Publicaciones | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Comunicación digital</p>
+
+            <h1>Publicaciones registradas</h1>
+
+            <p>
+                Consulta el historial de contenidos registrados
+                dentro de la plataforma.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'publicaciones:crear' %}"
+            class="btn-primary"
+        >
+            Registrar publicación
+        </a>
+
+    </div>
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Red social</th>
+                    <th>Tema</th>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for publicacion in publicaciones %}
+
+                <tr>
+
+                    <td>
+                        {{ publicacion.get_red_social_display }}
+                    </td>
+
+                    <td>
+                        {{ publicacion.tema }}
+                    </td>
+
+                    <td>
+                        {{ publicacion.fecha_publicacion|default:"Sin fecha" }}
+                    </td>
+
+                    <td>
+                        {{ publicacion.tipo_contenido|default:"No definido" }}
+                    </td>
+
+                    <td>
+                        {{ publicacion.get_estado_display }}
+                    </td>
+
+                    <td>
+                        <a
+                            href="{% url 'publicaciones:detalle' publicacion.pk %}"
+                        >
+                            Ver
+                        </a>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="6">
+                        No hay publicaciones registradas.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -36,6 +36,10 @@ class Publicacion(models.Model):
         blank=True,
     )
 
+    enlace_publicacion = models.URLField(
+        blank=True,
+    )
+
     estado = models.CharField(
         max_length=20,
         choices=EstadoPublicacion.choices,
@@ -53,5 +57,9 @@ class Publicacion(models.Model):
         auto_now_add=True,
     )
 
+    fecha_actualizacion = models.DateTimeField(
+        auto_now=True,
+    )
+
     def __str__(self):
-        return f"{self.red_social} - {self.tema}"
+        return f"{self.get_red_social_display()} - {self.tema}"

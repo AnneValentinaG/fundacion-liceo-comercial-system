@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registrar publicación | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Publicaciones en redes sociales</p>
+
+            <h1>Registrar publicación</h1>
+
+            <p>
+                Registra la información principal del contenido
+                institucional publicado o programado.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'publicaciones:lista' %}"
+            class="btn-secondary"
+        >
+            Ver publicaciones
+        </a>
+
+    </div>
+
+    <div class="form-card">
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Registrar publicación
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -3,27 +3,25 @@ from django.urls import path
 from . import views
 
 
-app_name = "contratos"
+app_name = "publicaciones"
 
 
 urlpatterns = [
     path(
         "",
-        views.lista_contratos,
+        views.lista_publicaciones,
         name="lista",
     ),
 
     path(
-        "nuevo/",
-        views.crear_contrato,
+        "nueva/",
+        views.crear_publicacion,
         name="crear",
     ),
 
     path(
         "<int:pk>/",
-        views.detalle_contrato,
+        views.detalle_publicacion,
         name="detalle",
     ),
-
-    
 ]

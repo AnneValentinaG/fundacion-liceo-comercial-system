@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}
+Métricas | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Análisis digital</p>
+
+            <h1>Métricas registradas</h1>
+
+            <p>
+                Consulta los resultados asociados a las
+                publicaciones institucionales.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'metricas:crear' %}"
+            class="btn-primary"
+        >
+            Registrar métricas
+        </a>
+
+    </div>
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+                <tr>
+                    <th>Publicación</th>
+                    <th>Alcance</th>
+                    <th>Interacciones</th>
+                    <th>Impresiones</th>
+                    <th>Tasa interacción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for metrica in metricas %}
+
+                <tr>
+
+                    <td>
+                        {{ metrica.publicacion.tema }}
+                    </td>
+
+                    <td>
+                        {{ metrica.alcance }}
+                    </td>
+
+                    <td>
+                        {{ metrica.total_interacciones }}
+                    </td>
+
+                    <td>
+                        {{ metrica.impresiones }}
+                    </td>
+
+                    <td>
+                        {{ metrica.tasa_interaccion }} %
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="5">
+                        No hay métricas registradas.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}
