@@ -776,3 +776,68 @@ button {
     }
 
 }
+
+/* =========================================
+   BOTONES HACIA LOS SITIOS WEB
+========================================= */
+
+.header-websites {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+
+/* BOTÓN GENERAL */
+
+.header-web-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    background: #8AA63B;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.header-web-button:hover {
+    background: #768f32;
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 15px rgba(138, 166, 59, 0.25);
+}
+
+
+/* BOTÓN INSTITUCIÓN EDUCATIVA */
+
+.header-web-button-orange {
+    background: #E66925;
+}
+
+
+.header-web-button-orange:hover {
+    background: #cc581d;
+
+    box-shadow:
+        0 6px 15px rgba(230, 105, 37, 0.25);
+}

@@ -32,9 +32,36 @@
         </div>
 
 
-        <!-- USUARIO Y CERRAR SESIÓN -->
         {% if user.is_authenticated %}
 
+            <!-- BOTONES HACIA LOS SITIOS WEB -->
+            <div class="header-websites">
+
+                {% if user.is_authenticated %}
+
+            <!-- BOTONES HACIA LAS PÁGINAS WEB -->
+            <div class="header-websites">
+
+                <button
+                    type="button"
+                    class="header-web-button"
+                    onclick="window.open('https://fundacionliceocomercial.com.co/', '_blank')"
+                >
+                    Sitio web Fundación
+                </button>
+
+                <button
+                    type="button"
+                    class="header-web-button header-web-button-orange"
+                    onclick="window.open('https://institucioneducativa.fundacionliceocomercial.com.co/', '_blank')"
+                >
+                    Institución Educativa
+                </button>
+
+            </div>
+
+
+            <!-- USUARIO Y CERRAR SESIÓN -->
             <div class="header-user">
 
                 <span>
@@ -50,6 +77,12 @@
                 </form>
 
             </div>
+
+        {% endif %}
+
+            </div>
+
+
 
         {% endif %}
 
