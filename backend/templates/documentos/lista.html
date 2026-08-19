@@ -21,14 +21,28 @@ Gestión documental | Plataforma FLC
             </p>
         </div>
 
-        <a
-            href="{% url 'documentos:crear' %}"
-            class="btn-primary"
-        >
-            Registrar documento
-        </a>
+
+        <!-- BOTONES DEL ENCABEZADO -->
+        <div class="page-header-actions">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn-secondary"
+            >
+                ← Volver al inicio
+            </a>
+
+            <a
+                href="{% url 'documentos:crear' %}"
+                class="btn-primary"
+            >
+                Registrar documento
+            </a>
+
+        </div>
 
     </div>
+
 
     <div class="table-card">
 

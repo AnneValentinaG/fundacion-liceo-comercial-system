@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+Importar comunicaciones | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+            <p>Gestión de comunicaciones</p>
+
+            <h1>Importar desde Excel</h1>
+
+            <p>
+                Carga el archivo de seguimiento de comunicaciones
+                para registrar o actualizar varios registros
+                de forma automática.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'comunicaciones:lista' %}"
+            class="btn-secondary"
+        >
+            ← Volver a comunicaciones
+        </a>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Importar archivo
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if resultado %}
+
+    <div class="detail-card">
+
+        <h2>Resultado de la importación</h2>
+
+        <p>
+            <strong>Nuevos registros:</strong>
+            {{ resultado.creadas }}
+        </p>
+
+        <p>
+            <strong>Registros actualizados:</strong>
+            {{ resultado.actualizadas }}
+        </p>
+
+        {% if resultado.errores %}
+
+            <h3>Filas con inconvenientes</h3>
+
+            <ul>
+                {% for error in resultado.errores %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+
+        {% endif %}
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

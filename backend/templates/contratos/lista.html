@@ -21,14 +21,28 @@ Contratos | Plataforma FLC
             </p>
         </div>
 
-        <a
-            href="{% url 'contratos:crear' %}"
-            class="btn-primary"
-        >
-            Registrar contrato
-        </a>
+
+        <!-- BOTONES DEL ENCABEZADO -->
+        <div class="page-header-actions">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn-secondary"
+            >
+                ← Volver al inicio
+            </a>
+
+            <a
+                href="{% url 'contratos:crear' %}"
+                class="btn-primary"
+            >
+                Registrar contrato
+            </a>
+
+        </div>
 
     </div>
+
 
     <div class="table-card">
 

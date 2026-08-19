@@ -841,3 +841,66 @@ button {
     box-shadow:
         0 6px 15px rgba(230, 105, 37, 0.25);
 }
+
+
+/* BOTONES DEL ENCABEZADO DE LAS PÁGINAS */
+
+.page-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .page-header-actions {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   SEGUIMIENTO DE COMUNICACIONES
+========================================= */
+
+.communication-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.filter-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+
+    color: #555555;
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+    border-color: #E66925;
+    color: #E66925;
+}
+
+.communication-responses {
+    margin-top: 28px;
+}
+
+.communication-responses h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    color: #8AA63B;
+}

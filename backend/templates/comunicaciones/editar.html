@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+Editar comunicación | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+
+            <p>Gestión de comunicaciones</p>
+
+            <h1>
+                Editar comunicación
+            </h1>
+
+            <p>
+                Modifica la información registrada para
+                la comunicación {{ comunicacion.numero_radicado }}.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'comunicaciones:detalle' comunicacion.pk %}"
+            class="btn-secondary"
+        >
+            ← Volver al detalle
+        </a>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <p>
+            <strong>Ítem:</strong>
+            {{ comunicacion.item }}
+        </p>
+
+        <p>
+            <strong>Radicado:</strong>
+            {{ comunicacion.numero_radicado }}
+        </p>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Guardar cambios
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

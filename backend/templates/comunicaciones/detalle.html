@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ comunicacion.numero_radicado }} | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+
+            <p>
+                {{ comunicacion.get_tipo_display }}
+            </p>
+
+            <h1>
+                Comunicación #{{ comunicacion.item }}
+            </h1>
+
+            <p>
+                Radicado:
+                {{ comunicacion.numero_radicado }}
+            </p>
+
+            <p>
+                {{ comunicacion.asunto }}
+            </p>
+
+        </div>
+
+        <div class="page-header-actions">
+
+            <a
+                href="{% url 'comunicaciones:lista' %}"
+                class="btn-secondary"
+            >
+                ← Volver
+            </a>
+
+            <a
+                href="{% url 'comunicaciones:editar' comunicacion.pk %}"
+                class="btn-secondary"
+            >
+                Editar
+            </a>
+
+            <a
+                href="{% url 'comunicaciones:crear' %}?respuesta_a={{ comunicacion.pk }}"
+                class="btn-primary"
+            >
+                Responder
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-card">
+
+        <h2>Información de la comunicación</h2>
+
+        <p>
+            <strong>Ítem:</strong>
+            {{ comunicacion.item|default:"No registrado" }}
+        </p>
+
+        <p>
+            <strong>Tipo:</strong>
+            {{ comunicacion.get_tipo_display }}
+        </p>
+
+        <p>
+            <strong>Fecha recibido:</strong>
+            {{ comunicacion.fecha_recibido|date:"d/m/Y"|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Hora recibido:</strong>
+            {{ comunicacion.hora_recibido|time:"H:i"|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Asunto:</strong>
+            {{ comunicacion.asunto }}
+        </p>
+
+        <p>
+            <strong>Remitente:</strong>
+            {{ comunicacion.remitente }}
+        </p>
+
+        <p>
+            <strong>Responsable:</strong>
+
+            {% if comunicacion.responsable_texto %}
+                {{ comunicacion.responsable_texto }}
+
+            {% elif comunicacion.responsable %}
+                {{ comunicacion.responsable.get_full_name|default:comunicacion.responsable.username }}
+
+            {% else %}
+                Sin asignar
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Dependencia:</strong>
+            {{ comunicacion.dependencia|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Estado inicial:</strong>
+            {{ comunicacion.estado_inicial|default:"No registrado" }}
+        </p>
+
+        <p>
+            <strong>Enviado a:</strong>
+            {{ comunicacion.enviado_a|default:"No registrado" }}
+        </p>
+
+        <p>
+            <strong>Fecha de asignación:</strong>
+            {{ comunicacion.fecha_asignacion|date:"d/m/Y"|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Hora de asignación:</strong>
+            {{ comunicacion.hora_asignacion|time:"H:i"|default:"No registrada" }}
+        </p>
+
+        <p>
+            <strong>Término:</strong>
+
+            {% if comunicacion.termino_dias %}
+                {{ comunicacion.termino_dias }} días
+            {% else %}
+                No registrado
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Estado actual:</strong>
+
+            {% if comunicacion.estado_actual_texto %}
+                {{ comunicacion.estado_actual_texto }}
+            {% else %}
+                {{ comunicacion.get_estado_display }}
+            {% endif %}
+        </p>
+
+        <p>
+            <strong>Observaciones:</strong>
+            {{ comunicacion.observaciones|default:"Sin observaciones" }}
+        </p>
+
+
+        {% if comunicacion.respuesta_a %}
+
+            <div class="response-reference">
+
+                <h3>Esta comunicación es respuesta de:</h3>
+
+                <a
+                    href="{% url 'comunicaciones:detalle' comunicacion.respuesta_a.pk %}"
+                >
+                    {{ comunicacion.respuesta_a.numero_radicado }}
+                    —
+                    {{ comunicacion.respuesta_a.asunto }}
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+        {% if comunicacion.archivo %}
+
+            <p>
+                <strong>Archivo asociado:</strong>
+
+                <a
+                    href="{{ comunicacion.archivo.url }}"
+                    target="_blank"
+                >
+                    Ver archivo
+                </a>
+            </p>
+
+        {% endif %}
+
+    </div>
+
+
+    {% if respuestas %}
+
+        <div class="table-card communication-responses">
+
+            <h2>Respuestas relacionadas</h2>
+
+            <table class="data-table">
+
+                <thead>
+                    <tr>
+                        <th>Radicado</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Asunto</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for respuesta in respuestas %}
+
+                        <tr>
+
+                            <td>
+                                {{ respuesta.numero_radicado }}
+                            </td>
+
+                            <td>
+                                {{ respuesta.get_tipo_display }}
+                            </td>
+
+                            <td>
+                                {{ respuesta.fecha_recibido|date:"d/m/Y"|default:"-" }}
+                            </td>
+
+                            <td>
+                                {{ respuesta.asunto }}
+                            </td>
+
+                            <td>
+                                {% if respuesta.estado_actual_texto %}
+                                    {{ respuesta.estado_actual_texto }}
+                                {% else %}
+                                    {{ respuesta.get_estado_display }}
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <a
+                                    href="{% url 'comunicaciones:detalle' respuesta.pk %}"
+                                >
+                                    Ver
+                                </a>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}

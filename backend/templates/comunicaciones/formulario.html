@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}
+Registrar comunicación | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+
+            <p>Gestión de comunicaciones</p>
+
+            <h1>
+                Registrar comunicación
+            </h1>
+
+            <p>
+                Registra un mensaje o documento enviado
+                o recibido por la Fundación.
+            </p>
+
+        </div>
+
+        <a
+            href="{% url 'comunicaciones:lista' %}"
+            class="btn-secondary"
+        >
+            ← Volver a comunicaciones
+        </a>
+
+    </div>
+
+
+    <div class="form-card">
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Registrar comunicación
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

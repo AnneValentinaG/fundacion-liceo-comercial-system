@@ -21,14 +21,28 @@ Métricas | Plataforma FLC
             </p>
         </div>
 
-        <a
-            href="{% url 'metricas:crear' %}"
-            class="btn-primary"
-        >
-            Registrar métricas
-        </a>
+
+        <!-- BOTONES DEL ENCABEZADO -->
+        <div class="page-header-actions">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn-secondary"
+            >
+                ← Volver al inicio
+            </a>
+
+            <a
+                href="{% url 'metricas:crear' %}"
+                class="btn-primary"
+            >
+                Registrar métricas
+            </a>
+
+        </div>
 
     </div>
+
 
     <div class="table-card">
 

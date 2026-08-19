@@ -11,6 +11,7 @@ urlpatterns = [
     path("publicaciones/", include("publicaciones.urls"),),
     path("metricas/", include("metricas.urls"),),
     path("asistente-ia/",include("asistente_ia.urls"),),
+    path("comunicaciones/", include("comunicaciones.urls"),),
     path("", include("core.urls"),),
     
 ]

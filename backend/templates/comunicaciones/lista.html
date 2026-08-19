@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}
+Seguimiento de comunicaciones | Plataforma FLC
+{% endblock %}
+
+{% block content %}
+
+<section class="page-container">
+
+    <div class="page-header">
+
+        <div>
+
+            <p>Gestión de comunicaciones</p>
+
+            <h1>
+                Seguimiento de comunicaciones
+            </h1>
+
+            <p>
+                Consulta los mensajes y documentos enviados
+                y recibidos por la Fundación Liceo Comercial Ciudad De El Bordo.
+            </p>
+
+        </div>
+
+
+        <div class="page-header-actions">
+
+            <a
+                href="{% url 'dashboard' %}"
+                class="btn-secondary"
+            >
+                ← Volver al inicio
+            </a>
+
+            <a
+                href="{% url 'comunicaciones:importar' %}"
+                class="btn-secondary"
+            >
+                Importar Excel
+            </a>
+
+            <a
+                href="{% url 'comunicaciones:crear' %}"
+                class="btn-primary"
+            >
+                Registrar comunicación
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="communication-filters">
+
+        <a
+            href="{% url 'comunicaciones:lista' %}"
+            class="filter-button"
+        >
+            Todas
+        </a>
+
+        <a
+            href="{% url 'comunicaciones:lista' %}?tipo=RECIBIDA"
+            class="filter-button"
+        >
+            Recibidas
+        </a>
+
+        <a
+            href="{% url 'comunicaciones:lista' %}?tipo=ENVIADA"
+            class="filter-button"
+        >
+            Enviadas
+        </a>
+
+    </div>
+
+
+    <div class="table-card">
+
+        <table class="data-table">
+
+            <thead>
+
+                <tr>
+                    <th>Radicado</th>
+                    <th>Tipo</th>
+                    <th>Fecha</th>
+                    <th>Remitente</th>
+                    <th>Destinatario</th>
+                    <th>Asunto</th>
+                    <th>Estado</th>
+                    <th></th>
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for comunicacion in comunicaciones %}
+
+                <tr>
+
+                    <td>
+                        {{ comunicacion.numero_radicado }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.get_tipo_display }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.fecha }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.remitente }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.destinatario }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.asunto }}
+                    </td>
+
+                    <td>
+                        {{ comunicacion.get_estado_display }}
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="{% url 'comunicaciones:detalle' comunicacion.pk %}"
+                        >
+                            Ver
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="8">
+                        No hay comunicaciones registradas.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}
